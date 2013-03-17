@@ -13,20 +13,16 @@ module.exports = function(grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
   var path = require('path'),
-    fs = require('fs');
+  fs = require('fs');
   var contrib = require('grunt-lib-contrib').init(grunt);
   var uglify = require('./lib/uglify').init(grunt);
-    grunt.log.writeln('Author: zhouquan.yezq(骁勇) Alibaba-inc');
+  grunt.log.writeln('Author: 内外前端团队 Alibaba-inc');
   grunt.file.defaultEncoding = 'utf8';
   grunt.registerMultiTask('mins', 'Minify files with UglifyJS.', function() {
   grunt.log.writeln('+++++++++++++++++start mins file for every module +++++++++++++++ "');
 
-    var files = grunt.file.expand("modules");
-    
-    var dirList = fs.readdirSync(path.normalize('./modules'));
-    var me=this;
-
-    var _process=function(_name,_path){
+  var me=this;
+  var _process=function(_name,_path){
         if(fs.statSync(_path+'/'+_name).isDirectory() && _name!==".svn"){
           var dirList = fs.readdirSync(path.normalize(_path+'/'+_name));
           var _path=_path+'/'+_name;
@@ -63,8 +59,11 @@ module.exports = function(grunt) {
         }
     };
 
-    _process("modules",'.');
-
+    for(var i=0; i<this.data.src.length;i++){
+      grunt.log.writeln("Minify the "+this.data.src[i]+" folder :");
+      grunt.log.writeln("------------------------------");
+      _process(this.data.src[i],'.');
+    }
     grunt.log.writeln('+++++++++++++++++End mins file for every module+++++++++++++++ "');
 
     // Fail task if errors were logged.

@@ -25,12 +25,9 @@ In your project's Gruntfile, add a section named `mins` to the data object passe
 ```js
 grunt.initConfig({
   mins: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    dist: {
+      src: ['./modules'] // the foler name you want minify 
+    }
   },
 })
 ```
