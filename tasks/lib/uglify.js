@@ -9,7 +9,7 @@
 'use strict';
 
 // External libs.
-var UglifyJS = require('uglify-js');
+var UglifyJS = require('../../uglify-js');
 var fs = require('fs');
 
 exports.init = function(grunt) {
